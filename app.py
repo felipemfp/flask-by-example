@@ -4,7 +4,7 @@ import operator
 import re
 import nltk
 import json
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, json
 from flask.ext.sqlalchemy import SQLAlchemy
 from stop_words import stops
 from collections import Counter
@@ -108,7 +108,8 @@ def get_results(job_key):
             key=operator.itemgetter(1),
             reverse=True
         )[:10]
-        return jsonify(dict(results))
+        print(results)
+        return json.dumps(dict(results))
     else:
         return 'Nay!', 202
 
